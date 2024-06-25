@@ -1,17 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Card } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 
 const PlaceCard = ({ place, is_favorite }) => {
-  const navigation = useNavigation();
-
   return (
-    <Card
-      style={styles.cardContainer}
-      onPress={() => navigation.navigate('placeScreen')}
-    >
+    <Card style={styles.cardContainer}>
       <Card.Cover source={{ uri: `${place.imgUrl}` }} />
       <Card.Content>
         <Text style={styles.nameStyle}>{place.name}</Text>
@@ -19,6 +13,7 @@ const PlaceCard = ({ place, is_favorite }) => {
           <Text>{place.rating}</Text>
           <StarRatingDisplay
             starStyle={{ marginHorizontal: 0 }}
+            style={{ marginHorizontal: 2 }}
             starSize={16}
             rating={place.rating}
           />
