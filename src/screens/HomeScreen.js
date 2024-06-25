@@ -1,11 +1,18 @@
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { FlatList, Text, View, StyleSheet, Pressable } from 'react-native';
 
 import { sampleList } from '../store/sampleData';
 import PlaceCard from '../components/placeCard';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   const renderItem = ({ item }) => {
-    return <PlaceCard place={item} />;
+    return (
+      <Pressable onPress={() => navigation.navigate('placeScreen', { item })}>
+        <PlaceCard place={item} />
+      </Pressable>
+    );
   };
   return (
     <View style={styles.container}>
