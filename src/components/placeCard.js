@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Card } from 'react-native-paper';
-import { Rating } from 'react-native-ratings';
 import { useNavigation } from '@react-navigation/native';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 
@@ -23,14 +22,6 @@ const PlaceCard = ({ place, is_favorite }) => {
             starSize={16}
             rating={place.rating}
           />
-          {/* <Rating
-            type='custom'
-            ratingCount={5}
-            startingValue={place.rating}
-            imageSize={15}
-            style={styles.ratingStyle}
-            readonly
-          /> */}
         </View>
         {!is_favorite && (
           <Text style={styles.descStyle}>{place.description}</Text>
