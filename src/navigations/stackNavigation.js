@@ -15,6 +15,7 @@ const StackNavigation = () => {
       header: (props) => {
         <Header {...props} />;
       },
+
       tabBarIcon: ({ focused }) => {
         let iconName, size, color;
         size = focused ? 26 : 22;
@@ -31,14 +32,22 @@ const StackNavigation = () => {
 
     return (
       <Tab.Navigator screenOptions={({ route }) => screenOption(route)}>
-        <Tab.Screen name='userHome' component={HomeScreen} />
-        <Tab.Screen name='favorite' component={FavoriteScreen} />
+        <Tab.Screen
+          options={{ tabBarLabel: 'Home' }}
+          name='userHome'
+          component={HomeScreen}
+        />
+        <Tab.Screen
+          options={{ tabBarLabel: 'Favorite' }}
+          name='favorite'
+          component={FavoriteScreen}
+        />
       </Tab.Navigator>
     );
   };
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='home' component={Home} />
       <Stack.Screen name='placeScreen' component={PlaceScreen} />
     </Stack.Navigator>
