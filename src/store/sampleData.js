@@ -19,7 +19,7 @@ export const sampleList = [
       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups',
     is_favorite: false,
     last_update: '',
-    rating: 4.2,
+    rating: 2.5,
   },
   {
     id: 'us2ZoazdwSGN6bsQvy99',
@@ -30,7 +30,7 @@ export const sampleList = [
       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups',
     is_favorite: false,
     last_update: '',
-    rating: 4.3,
+    rating: 3,
   },
   {
     id: 'kcNWj2SQcUfE0h1FldTJ',
@@ -63,7 +63,7 @@ export const sampleList = [
       'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups',
     is_favorite: false,
     last_update: '',
-    rating: 4.7,
+    rating: 3.4,
   },
   {
     id: 'ZEQVYr7cRmwkYs4EA5Wi',
