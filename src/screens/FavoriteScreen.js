@@ -1,12 +1,18 @@
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { FlatList, Text, View, StyleSheet, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { sampleList } from '../store/sampleData';
 import PlaceCard from '../components/placeCard';
 
 const FavoriteScreen = () => {
+  const navigation = useNavigation();
   const favoriteList = sampleList.filter((place) => place.is_favorite);
 
   const renderItem = ({ item }) => {
-    return <PlaceCard place={item} is_favorite={true} />;
+    return (
+      <Pressable onPress={() => navigation.navigate('placeScreen', { item })}>
+        <PlaceCard place={item} is_favoriteScreen={true} />
+      </Pressable>
+    );
   };
 
   const EmptyList = () => {

@@ -1,25 +1,39 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
-import { Card } from 'react-native-paper';
+import { Card, IconButton, MD3Colors } from 'react-native-paper';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 
-const PlaceCard = ({ place, is_favorite }) => {
+const PlaceCard = ({ place, is_favoriteScreen }) => {
   return (
     <Card style={styles.cardContainer}>
       <Card.Cover source={{ uri: `${place.imgUrl}` }} />
       <Card.Content>
-        <Text style={styles.nameStyle}>{place.name}</Text>
-        <View style={styles.ratingContainer}>
-          <Text>{place.rating}</Text>
-          <StarRatingDisplay
-            starStyle={{ marginHorizontal: 0 }}
-            style={{ marginHorizontal: 2 }}
-            starSize={16}
-            rating={place.rating}
-          />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View>
+            <Text style={styles.nameStyle}>{place.name}</Text>
+            <View style={styles.ratingContainer}>
+              <Text>{place.rating}</Text>
+              <StarRatingDisplay
+                starStyle={{ marginHorizontal: 0 }}
+                style={{ marginHorizontal: 2 }}
+                starSize={16}
+                rating={place.rating}
+              />
+            </View>
+          </View>
+          {!is_favoriteScreen && (
+            <IconButton
+              icon={place.is_favorite ? 'heart' : 'heart-outline'}
+              iconColor={MD3Colors.error50}
+              size={20}
+              onPress={() => console.log('Pressed')}
+            />
+          )}
         </View>
-        {!is_favorite && (
-          <Text style={styles.descStyle}>{place.description}</Text>
+        {!is_favoriteScreen && (
+          <Text numberOfLines={2} style={styles.descStyle}>
+            {place.description}
+          </Text>
         )}
       </Card.Content>
     </Card>
@@ -30,8 +44,8 @@ export default PlaceCard;
 
 const styles = StyleSheet.create({
   cardContainer: { marginVertical: 5, marginHorizontal: 7 },
-  ratingContainer: { flexDirection: 'row', marginVertical: 2 },
+  ratingContainer: { flexDirection: 'row' },
   nameStyle: { fontWeight: 'bold', letterSpacing: 1, marginVertical: 2 },
   ratingStyle: { alignplaces: 'flex-start', marginHorizontal: 3 },
-  descStyle: { marginVertical: 3, letterSpacing: 0.5 },
+  descStyle: { marginTop: -8, letterSpacing: 0.5 },
 });
