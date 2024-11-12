@@ -1,11 +1,15 @@
 import { FlatList, Text, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { sampleList } from '../store/sampleData';
 import PlaceCard from '../components/placeCard';
+import { StateContext } from '../context/stateContext';
+import { useContext } from 'react';
 
 const FavoriteScreen = () => {
   const navigation = useNavigation();
-  const favoriteList = sampleList.filter((place) => place.is_favorite);
+
+  const places = useContext(StateContext);
+
+  const favoriteList = places.places.filter((place) => place.is_favorite);
 
   const renderItem = ({ item }) => {
     return (

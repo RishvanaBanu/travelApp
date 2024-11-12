@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Card, IconButton, MD3Colors } from 'react-native-paper';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
+import { StateContext } from '../context/stateContext';
 
 const PlaceCard = ({ place, is_favoriteScreen }) => {
+  const { toggleFavorite } = useContext(StateContext);
+
   return (
     <Card style={styles.cardContainer}>
       <Card.Cover source={{ uri: `${place.imgUrl}` }} />
@@ -21,14 +24,14 @@ const PlaceCard = ({ place, is_favoriteScreen }) => {
               />
             </View>
           </View>
-          {!is_favoriteScreen && (
-            <IconButton
-              icon={place.is_favorite ? 'heart' : 'heart-outline'}
-              iconColor={MD3Colors.error50}
-              size={20}
-              onPress={() => console.log('Pressed')}
-            />
-          )}
+          {/* {!is_favoriteScreen && ( */}
+          <IconButton
+            icon={place.is_favorite ? 'heart' : 'heart-outline'}
+            iconColor={MD3Colors.error50}
+            size={20}
+            onPress={() => toggleFavorite(place.id)}
+          />
+          {/* // )} */}
         </View>
         {!is_favoriteScreen && (
           <Text numberOfLines={2} style={styles.descStyle}>

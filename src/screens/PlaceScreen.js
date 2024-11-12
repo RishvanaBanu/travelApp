@@ -1,18 +1,21 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
-import { StarRatingDisplay } from 'react-native-star-rating-widget';
+import React, { useState } from 'react';
+import StarRating, { StarRatingDisplay } from 'react-native-star-rating-widget';
 import MapView from 'react-native-maps';
 
 const PlaceScreen = ({ route }) => {
   const { item } = route.params;
   // console.log(item);
 
+  const [rating, setRating] = useState(0);
+  // console.log('rating', rating);
+
   return (
     <View style={{ flex: 1 }}>
       <Image
         source={{ uri: item.imgUrl }}
         style={{
-          flex: 1,
+          flex: 0.5,
           width: undefined,
           height: undefined,
         }}
@@ -21,12 +24,13 @@ const PlaceScreen = ({ route }) => {
       <View style={{ marginHorizontal: 6, marginTop: 12 }}>
         <Text>{item.name}</Text>
         <View style={{ flexDirection: 'row', marginVertical: 2 }}>
-          <Text>{item.rating}</Text>
-          <StarRatingDisplay
+          <Text>{rating}</Text>
+          <StarRating
             starSize={17}
             starStyle={{ marginHorizontal: 0 }}
             style={{ marginHorizontal: 3 }}
-            rating={item.rating}
+            rating={rating}
+            onChange={(e) => setRating(e)}
           />
         </View>
         <Text>{item.description}</Text>

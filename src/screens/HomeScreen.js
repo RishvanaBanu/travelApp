@@ -1,11 +1,16 @@
 import { FlatList, Text, View, StyleSheet, Pressable } from 'react-native';
+import { useContext } from 'react';
 
-import { sampleList } from '../store/sampleData';
+// import { sampleList } from '../store/sampleData';
 import PlaceCard from '../components/placeCard';
 import { useNavigation } from '@react-navigation/native';
+// import { StoreContext } from '../store/storeContext';
+import { StateContext } from '../context/stateContext';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+
+  const places = useContext(StateContext);
 
   const renderItem = ({ item }) => {
     return (
@@ -17,7 +22,7 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={sampleList}
+        data={places.places}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
